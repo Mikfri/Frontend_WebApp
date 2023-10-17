@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book-Lib with Vue, REST & AXIO</title>
+  <title>ZW-APPER UI</title>
   <!-- BOOTSTRAP  -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <!-- BOOTSTRAP VUE & AXIO -->
@@ -21,7 +21,6 @@
   <style>
     .custom-button {
       width: 150px;
-      /* Juster bredden efter behov */
     }
   </style>
 </head>
@@ -29,8 +28,11 @@
 <body>
   <div class="container">
     <div class="text-center p-5">
-      <h2>Frontend-WebApp</h2>
-      <h6>| #json | #vue | #axios | #bootstrap |</h6>
+      <h1><b>ZWAPPER</b></h1>
+      <h7><b>Z</b>eland<b>W</b>eb-<b>APP</b>lication-<b>E</b>asy<b>R</b>equests</h7>
+      <h6>| #json | #vue-3 | #axios | #bootstrap5 | #CORS | </h6>
+      <h7><a href="https://restexcercise2.azurewebsites.net/api/Book" target="_blank">TARGET SITE FOR
+          .json-string</a></h7>
     </div>
     <div class="row">
       <div class="column-7"> <!-- Første item række1 fylder 7 colonner -->
@@ -52,35 +54,37 @@
             <div class="card-body col-md-5">
               <div class="mb-3 mt-3">
                 <div class="d-flex justify-content-between">
-                    <button id="getAllButton" @click="getAllBooks" class="btn btn-info text-light"><b>Get all books</b></button>
-                    <button id="clearButton" @click="clearOutput" class="btn btn-outline-info"><b>Clear </b></button>
+                  <button id="getAllButton" @click="getAllBooks" class="btn btn-info text-light"><b>Get all
+                      books</b></button>
+                  <button id="clearButton" @click="clearOutput" class="btn btn-outline-info"><b>Clear </b></button>
                 </div>
-            </div>
+              </div>
               <div class="input-group mb-3 mt-3">
                 <input v-model="byTitle" type="text" class="form-control" placeholder="Title name">
-                <button id="getByTitle" @click="getByTitle(byTitle)" class="btn btn-info text-light"><b>Get by Title</b></button>
+                <button id="getByTitle" @click="getByTitle(byTitle)" class="btn btn-info text-light"><b>Get by
+                    Title</b></button>
               </div>
               <div>
                 <ul v-if="bookList.length">
-                    <li>
-                        <span><b>{{getAllStatMsg}}</b></span>
-                    </li>
-                    <li>
-                        <span><b>{{getByTitStatMsg}}</b></span>
-                    </li>
-                    <li v-for="book in bookList"> {{ book }} </li>
+                  <li>
+                    <span><b>{{getAllStatMsg}}</b></span>
+                  </li>
+                  <li>
+                    <span><b>{{getByTitStatMsg}}</b></span>
+                  </li>
+                  <li v-for="book in bookList"> {{ book }} </li>
                 </ul>
                 <div v-else>
-                    <ul>
-                        <li>
-                            <span><b>{{getAllStatMsg}}</b></span>
-                        </li>
-                        <li>
-                            <span><b>{{getByTitStatMsg}}</b></span>
-                        </li>
-                    </ul>
+                  <ul>
+                    <li>
+                      <span><b>{{getAllStatMsg}}</b></span>
+                    </li>
+                    <li>
+                      <span><b>{{getByTitStatMsg}}</b></span>
+                    </li>
+                  </ul>
                 </div>
-            </div>            
+              </div>
             </div>
           </div>
         </div>
@@ -113,14 +117,16 @@
         <div class="card">
           <div class="card-header">
             <a class="btn" data-bs-toggle="collapse" href="#collapseGetId">
-              <button class="btn btn-info text-light custom-button" type="button"><b>GET</b></button><b> /api/Books/{id}</b>
+              <button class="btn btn-info text-light custom-button" type="button"><b>GET</b></button><b>
+                /api/Books/{id}</b>
             </a>
           </div>
           <div id="collapseGetId" class="collapse">
             <div class="card-body col-md-5">
               <div class="input-group mb-3 mt-3">
                 <input v-model.number="getId" type="number" class="form-control" placeholder="ID ">
-                <button id="buttonGetById" @click="getById(getId)" class="btn btn-info text-light"><b>Get by ID</b></button>
+                <button id="buttonGetById" @click="getById(getId)" class="btn btn-info text-light"><b>Get by
+                    ID</b></button>
               </div>
               <div>
                 <ul v-if="singleBook">
@@ -174,20 +180,20 @@
                 <div>
                   <span><b>{{delStatMsg}}</b></span><!-- <span :class="{ 'text-success': delStatMsg, 'text-danger': !delStatMsg }"><b>{{delStatMsg || 'Book not found!'}}</b></span> -->
                 </div>
-                </div>
               </div>
             </div>
           </div>
-
-          <!-- ACCORDION /END: BELOW -->
         </div>
-        <!-- ID = APP /END: BELOW -->
-      </div>
-      <!-- CONTAINER /END: BELOW -->
-    </div>
 
-    <br><br><br>
-    <script src="js/main.js"></script>
+        <!-- ACCORDION /END: BELOW -->
+      </div>
+      <!-- ID = APP /END: BELOW -->
+    </div>
+    <!-- CONTAINER /END: BELOW -->
+  </div>
+
+  <br><br><br>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

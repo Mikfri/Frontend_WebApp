@@ -1,7 +1,15 @@
 /*Vi laver en enkelt app for hele Web-applikationen.. Derfor IKKE 
     const <appnavn> = Vue.createApp({...*/
 
-const baseUrl = "https://anbo-restbookquerystring.azurewebsites.net/api/Books"
+/// CORS:
+/// Cross Origin Resource Sharing, is an HTTP-header based mechanism that allows
+/// a server to indicate any origins (domain, scheme, ...)
+
+
+const baseUrl = "https://restexcercise2.azurewebsites.net/api/Book"
+//const baseUrl = "http://anbo-bookstorerest.azurewebsites.net/api/books"         // BAD CORS
+//const baseUrl = "https://anbo-restbookquerystring.azurewebsites.net/api/Books"  // GOOD CORS
+
 
 Vue.createApp({
     data() {
@@ -74,40 +82,40 @@ Vue.createApp({
                 this.singleBook = await response.data
                 this.getIdStatMsg = `CODE ${response.status}: ${response.statusText}`
             } catch (ex) {
-                //this.getIdStatMsg = `ERROR: ${ex.message}`;
+                this.getIdStatMsg = `ERROR: ${ex.message}`;
+                alert(ex.message)
+            }
+        },
+        async addBook() {
+            try {
+                response = await axios.post(baseUrl, this.addData)
+                this.addStatMsg = `CODE ${response.status}: ${response.statusText}`
+                this.getAllBooks()
+            } catch (ex) {
+                //this.addStatMsg = `ERROR: ${ex.message}`;
                 alert(ex.message)
             }
         },
         // async addBook() {
         //     try {
-        //         response = await axios.post(baseUrl, this.addData)
-        //         this.addStatMsg = `CODE ${response.status}: ${response.statusText}`
-        //         this.getAllBooks()
+        //         const response = await axios.post(baseUrl, this.addData)
+
+        //         if (response.status === 201) {
+        //             // Status 201: Created
+        //             this.addStatMsg = `CODE ${response.status}: Created`
+        //         } else if (response.status === 200) {
+        //             // Status 200: OK, men forventet var 201
+        //             this.addStatMsg = "Error: Expected status 201 Created, but received 200 OK"
+        //         } else {
+        //             this.addStatMsg = `CODE ${response.status}: ${response.statusText}`
+        //         }
+
+        //         this.getAllBooks();
         //     } catch (ex) {
-        //         //this.addStatMsg = `ERROR: ${ex.message}`;
-        //         alert(ex.message)
+        //         // Håndtering af fejl
+        //         this.addStatMsg = `ERROR: ${ex.message}`
         //     }
         // },
-        async addBook() {
-            try {
-                const response = await axios.post(baseUrl, this.addData)
-
-                if (response.status === 201) {
-                    // Status 201: Created
-                    this.addStatMsg = `CODE ${response.status}: Created`
-                } else if (response.status === 200) {
-                    // Status 200: OK, men forventet var 201
-                    this.addStatMsg = "Error: Expected status 201 Created, but received 200 OK"
-                } else {
-                    this.addStatMsg = `CODE ${response.status}: ${response.statusText}`
-                }
-
-                this.getAllBooks();
-            } catch (ex) {
-                // Håndtering af fejl
-                this.addStatMsg = `ERROR: ${ex.message}`
-            }
-        },
         async updateBook(id) {       // ok kode
             const url = baseUrl + "/" + id
             try {
